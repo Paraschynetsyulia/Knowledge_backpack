@@ -1,0 +1,161 @@
+﻿/* Загальний стиль для всіх сторінок */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f7e2; /* Світло-бежевий фон */
+    color: #4b3d26; /* Темно-бежевий текст */
+    margin: 0;
+    padding: 20px;
+	width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+header {
+	padding-top: 3%;
+	padding-bottom: 2%;
+}
+main {
+	width: 20%;
+	padding-top: 5%;
+	border: 1px solid #7c6a4e;
+    padding: 1%;
+    border-radius: 30px;
+}
+
+/* Стиль для заголовків */
+h1, h2, h3 {
+    color: #7c6a4e; /* Золотисто-бежевий колір */
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+/* Стиль для абзаців */
+p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Стиль для кнопок */
+button, .btn {
+    background-color: #e6d8b8; /* Світлий бежевий колір */
+    color: #4b3d26; /* Темно-бежевий текст */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1em;
+}
+
+button:hover, .btn:hover {
+    background-color: #d4c4a8; /* Темніший бежевий колір при наведенні */
+}
+
+/* Стиль для посилань */
+a {
+    color: #8c7b5b; /* Колір посилань */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Стиль для форм */
+input[type="text"], input[type="email"], input[type="password"], textarea {
+    width: 89%;
+    padding: 10px;
+    border: 1px solid #ccc; /* Світло-сірий колір для полів вводу */
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+input[type="submit"] {
+    background-color: #e6d8b8; /* Світлий бежевий колір */
+    color: #4b3d26;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #d4c4a8; /* Темніший бежевий колір при наведенні */
+}
+
+/* Стиль для таблиць */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc; /* Світло-сірий колір для таблиць */
+}
+
+th {
+    background-color: #f5f5dc; /* Світло-бежевий для заголовків таблиць */
+}
+
+/* Стиль для карток */
+.card {
+    background-color: #fff; /* Білий фон для карток */
+    border: 1px solid #e0e0e0; /* Світло-сірий колір для карток */
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Стиль для помилок або повідомлень */
+.alert {
+    background-color: #f8d7da; /* Світло-рожевий фон */
+    color: #721c24; /* Темно-червоно-коричневий текст */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.auth {
+margin-top: 10%;
+}
+.logo {
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2%;
+	margin-bottom: 5%;
+}
+.logo img {
+	width: 5%;
+	margin-right: 2%;
+}
+.logo h1 {
+	width: 40%;	
+}
+li {
+	font-size: 20px;
+	margin-bottom: 3%;
+}
+.form {
+	display: flex;
+    flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+ul li{
+	list-style-type: none;
+}

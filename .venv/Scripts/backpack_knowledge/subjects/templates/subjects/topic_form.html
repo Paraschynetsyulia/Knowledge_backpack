@@ -1,0 +1,40 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Додавання теми</title>
+</head>
+<div class="logo">
+    <img src="{% static 'img/logo.png' %}">
+    <h1>Ранець знань</h1>
+	<!-- Форма для виходу -->
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Вийти</button>
+</form>
+</div>
+<h2>Додати тему до предмета: {{ subject.name }}</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Додати тему</button>
+</form>
+
+
+
+
+<!--{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<title>Додавання теми</title>
+</head>
+<div class = 'logo'>
+	<img src = "{% static 'img/logo.png' %}">
+	<h1>Ранець знань</h1>
+</div>
+<h2>Додати тему до предмета: {{ subject.name }}</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Додати тему</button>
+</form>
+-->

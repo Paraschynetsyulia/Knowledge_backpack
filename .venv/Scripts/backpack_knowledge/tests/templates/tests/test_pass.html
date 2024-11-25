@@ -1,0 +1,38 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Пройти тест</title>
+</head>
+<div class="logo">
+    <img src="{% static 'img/logo.png' %}">
+    <h1>Ранець знань</h1>
+    <!-- Форма для виходу -->
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Вийти</button>
+    </form>
+</div>
+
+<h2>Тест: {{ test.topic.title }}</h2>
+<p>Дата створення: {{ test.created_at }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    {% for question in questions %}
+        <div class="question-item">
+            <label><strong>{{ question.text }}</strong></label>
+            <ul>
+                {% for answer in question.answers.all %}
+                    <li>
+                        <input type="radio" name="question_{{ question.id }}" value="{{ answer.id }}" required>
+                        {{ answer.text }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+    <button type="submit">Відправити відповіді</button>
+</form>
+
+<!-- Кнопка повернення назад до теми -->
+<a href="{% url 'topic_detail_student' test.topic.id %}">Повернутись до теми</a>

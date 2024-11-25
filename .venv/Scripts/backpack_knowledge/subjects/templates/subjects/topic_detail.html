@@ -1,0 +1,91 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Тема</title>
+</head>
+
+<div class='logo'>
+    <img src="{% static 'img/logo.png' %}">
+    <h1>Ранець знань</h1>
+    <!-- Форма для виходу -->
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Вийти</button>
+    </form>
+</div>
+
+<h2>{{ topic.title }}</h2>
+<p>{{ topic.description }}</p>
+
+{% if topic.attached_file %}
+    <p>
+        <a href="{{ topic.attached_file.url }}" target="_blank">Переглянути файл</a>
+    </p>
+{% endif %}
+
+<!-- На сторінці детальної інформації про тему -->
+{% if test_exists %}
+    <a href="{% url 'test_detail' test.id %}">Переглянути тест</a>
+    <br>
+    <a href="{% url 'topic_results' topic.id %}">Переглянути результати тестів</a>
+{% else %}
+    <p>Тест ще не створений для цієї теми.</p>
+    <a href="{% url 'test_create' topic.id %}">Створити тест</a>
+{% endif %}
+
+
+
+<!-- Перегляд результатів тесту 
+{% if results %}
+    <h3>Ваші результати:</h3>
+    <ul>
+        {% for result in results %}
+            <li>
+                Тест: {{ topic.title }}<br>
+				Ім'я: {{result.student}}<br>
+                Ваш бал: {{ result.score }} з {{ result.test.questions.count }}<br>
+                Дата проходження: {{ result.submitted_at }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Ви ще не пройшли жодного тесту для цієї теми.</p>
+{% endif %} -->
+
+<!-- Кнопка повернення до переліку тем -->
+<a href="{% url 'topic_list' subject_id=topic.subject.id %}" class="btn-back">Повернутись до переліку тем</a>
+
+
+
+
+<!--{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Тема</title>
+</head>
+<div class='logo'>
+    <img src="{% static 'img/logo.png' %}">
+    <h1>Ранець знань</h1>
+	
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Вийти</button>
+</form>
+</div>
+<h2>{{ topic.title }}</h2>
+<p>{{ topic.description }}</p>
+{% if topic.attached_file %}
+    <p>
+        <a href="{{ topic.attached_file.url }}" target="_blank">Переглянути файл</a>
+    </p>
+{% endif %}
+
+{% if test_exists %}
+    <a href="{% url 'test_detail' test.id %}">Переглянути тест</a>
+{% else %}
+    <p>Тест ще не створений для цієї теми.</p>
+	<a href="{% url 'test_create' topic.id %}">Створити тест</a>
+{% endif %}
+
+<a href="{% url 'topic_list' subject_id=topic.subject.id %}" class="btn-back">Повернутись до переліку тем</a>
+-->

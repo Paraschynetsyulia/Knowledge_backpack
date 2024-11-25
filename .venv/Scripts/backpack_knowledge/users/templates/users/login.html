@@ -1,0 +1,48 @@
+﻿{% load static %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<title>Авторизація</title>
+</head>
+<div class = 'form'>
+
+<h2 class = 'auth'>Авторизація</h2>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="id_username">Ім'я користувача:</label>
+        {{ form.username }}
+        {% if form.username.errors %}
+            <div class="error">{{ form.username.errors.as_text }}</div>
+        {% endif %}
+    </div>
+    <div>
+        <label for="id_password">Пароль:</label>
+        {{ form.password }}
+        {% if form.password.errors %}
+            <div class="error">{{ form.password.errors.as_text }}</div>
+        {% endif %}
+    </div>
+    <button type="submit">Увійти</button>
+</form>
+
+{% if form.non_field_errors %}
+    <div class="error">
+        <ul>
+            {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+<p>Ще не зареєстровані? <a href="{% url 'register' %}">Зареєструйтесь тут</a></p>
+</div>

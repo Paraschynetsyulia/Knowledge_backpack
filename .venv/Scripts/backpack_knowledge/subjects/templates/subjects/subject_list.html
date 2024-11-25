@@ -1,0 +1,22 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Предмети</title>
+</head>
+<div class="logo">
+    <img src="{% static 'img/logo.png' %}">
+    <h1>Ранець знань</h1>
+	<!-- Форма для виходу -->
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Вийти</button>
+</form>
+</div>
+
+<h2>Список предметів</h2>
+
+<ol>
+    {% for subject in subjects %}
+    <li><a href="{% url 'topic_list' subject.id %}">{{ subject.name }}</a></li>
+    {% endfor %}
+</ol>

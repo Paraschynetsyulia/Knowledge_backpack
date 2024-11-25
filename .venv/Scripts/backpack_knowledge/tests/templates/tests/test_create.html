@@ -1,0 +1,70 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Створення тесту</title>
+</head>
+<div class="logo">
+    <img src="{% static 'img/logo.png' %}">
+    <h1>Ранець знань</h1>
+    <!-- Форма для виходу -->
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Вийти</button>
+    </form>
+</div>
+
+<h2>Створення тесту для теми: {{ topic.title }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div id="question-container">
+        <!-- Перше питання -->
+        <div class="question-item">
+            <label for="question_0">Питання 1:</label>
+            <input type="text" name="questions" id="question_0" required>
+            <div>
+                <label>Варіанти відповідей:</label><br>
+                <input type="radio" name="correct_answer_0" value="1" required>
+                <input type="text" name="answers_0_0" placeholder="Варіант 1" required><br>
+                <input type="radio" name="correct_answer_0" value="2">
+                <input type="text" name="answers_0_1" placeholder="Варіант 2" required><br>
+                <input type="radio" name="correct_answer_0" value="3">
+                <input type="text" name="answers_0_2" placeholder="Варіант 3" required>
+            </div>
+        </div>
+    </div>
+    <button type="button" id="add-question">Додати питання</button>
+    <button type="submit">Створити тест</button>
+</form>
+
+<!-- Кнопка повернення до теми -->
+<a href="{% url 'topic_list' topic.subject.id %}">
+    <button type="button">Повернутись до теми</button>
+</a>
+
+<script>
+    let questionCount = 1;  // Лічильник питань
+
+    document.getElementById('add-question').onclick = function() {
+        const container = document.getElementById('question-container');
+
+        const questionItem = document.createElement('div');
+        questionItem.className = 'question-item';
+        questionItem.innerHTML = `
+            <label for="question_${questionCount}">Питання ${questionCount + 1}:</label>
+            <input type="text" name="questions" id="question_${questionCount}" required>
+            <div>
+                <label>Варіанти відповідей:</label> <br>
+                <input type="radio" name="correct_answer_${questionCount}" value="1" required> 
+                <input type="text" name="answers_${questionCount}_0" placeholder="Варіант 1" required><br>
+                <input type="radio" name="correct_answer_${questionCount}" value="2"> 
+                <input type="text" name="answers_${questionCount}_1" placeholder="Варіант 2" required><br>
+                <input type="radio" name="correct_answer_${questionCount}" value="3"> 
+                <input type="text" name="answers_${questionCount}_2" placeholder="Варіант 3" required>
+            </div>
+        `;
+
+        container.appendChild(questionItem);
+        questionCount++;
+    };
+</script>

@@ -1,0 +1,29 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Тема</title>
+</head>
+<div class='logo'>
+    <img src="{% static 'img/logo.png' %}">
+    <h1>Ранець знань</h1>
+    
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Вийти</button>
+    </form>
+</div>
+
+<h2>{{ topic.title }}</h2>
+<p>{{ topic.description }}</p>
+
+{% if topic.attached_file %}
+    <p>
+        <a href="{{ topic.attached_file.url }}" target="_blank">Переглянути файл</a>
+    </p>
+{% endif %}
+
+{% if test_exists %}
+    <a href="{% url 'test_pass' test.id %}">Пройти тест</a>
+{% else %}
+    <p>Тест ще не створений для цієї теми.</p>
+{% endif %}

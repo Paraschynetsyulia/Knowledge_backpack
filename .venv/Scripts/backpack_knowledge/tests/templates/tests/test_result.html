@@ -1,0 +1,37 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Результати тесту</title>
+</head>
+<div class="logo">
+    <img src="{% static 'img/logo.png' %}">
+    <h1>Ранець знань</h1>
+	<!-- Форма для виходу -->
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Вийти</button>
+</form>
+</div>
+
+<body>
+    <h1>Результати тесту: {{ test.topic.title }}</h1>
+    <p>Ваш результат: {{ score }} з {{ total_questions }}</p>
+    <p>Відсоток правильних відповідей: {{ percentage }}%</p>
+
+    <h2>Деталі:</h2>
+    <ul>
+        {% for result in results %}
+            <li>
+                <strong>Питання:</strong> {{ result.question }}<br>
+                <strong>Ваша відповідь:</strong> {{ result.selected }}<br>
+                {% if result.correct %}
+                    <span style="color: green;">Правильна відповідь</span>
+                {% else %}
+                    <span style="color: red;">Неправильна відповідь</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'topic_detail_student' test.topic.id %}">Повернутись до теми</a>
+</body>
